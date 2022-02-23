@@ -1,11 +1,19 @@
-import dynamic from 'next/dynamic'
+import { HomeTemplate } from 'templates/Home'
+import { MapProps } from 'components/Map'
+import { GET_PLACES } from './../graphql/queries'
+import { GetPlacesQuery } from 'graphql/generated/graphql'
+import client from 'graphql/client'
 
-const Map = dynamic(() => import('components/Map'), { ssr: false })
+export default function Home({ places }: MapProps) {
+  return <HomeTemplate places={places} />
+}
 
-export default function Home() {
-  return (
-    <>
-      <Map />
-    </>
-  )
+export const getStaticProps = async () => {
+  const { places } = await client.request<GetPlacesQuery>(GET_PLACES)
+
+  return {
+    props: {
+      places
+    }
+  }
 }

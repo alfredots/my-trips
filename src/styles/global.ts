@@ -10,7 +10,7 @@ export const GlobalStyles = createGlobalStyle`
 
   --small: 1.5rem;
   --medium: 3rem;
-  --largar: 5rem;
+  --large: 5rem;
  }
 
  * {
