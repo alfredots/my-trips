@@ -35,6 +35,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   return {
+    revalidate: 12 * 3600,
     props: {
       heading: page.heading,
       body: page.body.html
